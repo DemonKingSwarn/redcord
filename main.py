@@ -1,8 +1,6 @@
 import discord
 import asyncio
 import httpx
-from discord import app_commands
-import keep_alive
 
 with open('config/config.json') as f:
     config = json.load(f)
