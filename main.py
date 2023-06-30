@@ -15,7 +15,6 @@ request = httpx.Client(headers=headers, timeout=None)
 #intents = discord.Intents(guild_messages = True, guilds = True, messages = True, emojis = True, webhooks = True, message_content = True)
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
-tree = app_commands.CommandTree(client)
 
 def url_has_image(url):
     # You can implement your own logic to check if the URL has an image
