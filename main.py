@@ -1,6 +1,7 @@
 import discord
 import asyncio
 import httpx
+import json
 
 with open('config/config.json') as f:
     config = json.load(f)
@@ -17,9 +18,6 @@ intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
 def url_has_image(url):
-    # You can implement your own logic to check if the URL has an image
-    # For example, you can use a library like BeautifulSoup to parse the HTML and look for image tags
-    # Here, I'll simply assume that URLs ending with .jpg or .png have images
     return url.lower().endswith(('.jpg', '.png', '.gif'))
 
 
