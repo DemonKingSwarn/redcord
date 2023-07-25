@@ -1,0 +1,44 @@
+name: redcord
+
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  redcord:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fall-fast: false
+      matrix:
+        language: [ 'python' ]
+
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: initialize codeql
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: perform codeql analysis
+        uses: github/codeql-action/analyze@v2
+
+      - name: commit
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          touch actions-successful
+          git add .
+          git commit -m "codeql analysis successfull"
+          git push --no-verify

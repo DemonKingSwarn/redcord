@@ -45,7 +45,6 @@ def parse(subreddit, after=''):
 
 @client.event
 async def on_ready():
-    await tree.sync(guild=discord.Object(id=1122485692044411020))
     print("logged in!")
 
 @client.event
