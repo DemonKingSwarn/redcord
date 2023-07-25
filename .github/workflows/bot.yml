@@ -38,7 +38,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          touch actions-successful
+          test actions-successful || touch actions-successful
+          echo "$(date '+%d %m %Y')" >> actions-successful
           git add .
           git commit -m "codeql analysis successfull"
           git push --no-verify
